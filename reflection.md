@@ -4,13 +4,11 @@
 
 **a. Initial design**
 
-- Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
+I designed four core classes: `Task` for individual care items, `Pet` for grouping a pet's tasks, `Owner` for managing multiple pets, and `Scheduler` for sorting, filtering, and conflict checks. The UML keeps behavior focused in the scheduler while `Pet` and `Owner` mainly act as containers and lookup helpers.
 
 **b. Design changes**
 
-- Did your design change during implementation?
-- If yes, describe at least one change and why you made it.
+Yes. I added `due_date`, `priority`, and recurrence handling to `Task` so the scheduler could support daily planning and recurring items without extra helper objects. I also gave `Task.mark_complete()` the ability to create the next occurrence, which kept recurrence logic close to the task itself.
 
 ---
 
@@ -23,8 +21,7 @@
 
 **b. Tradeoffs**
 
-- Describe one tradeoff your scheduler makes.
-- Why is that tradeoff reasonable for this scenario?
+The scheduler only detects exact time matches, not overlapping durations. That is reasonable for a first version because the assignment focuses on simple daily routines, and exact collisions are easy to explain and verify in tests.
 
 ---
 
@@ -46,13 +43,11 @@
 
 **a. What you tested**
 
-- What behaviors did you test?
-- Why were these tests important?
+I tested task completion, task addition, chronological sorting, and conflict detection. Those cases matter because they verify the core state changes and the main scheduler rules that the rest of the app depends on.
 
 **b. Confidence**
 
-- How confident are you that your scheduler works correctly?
-- What edge cases would you test next if you had more time?
+I am moderately confident because the main behaviors are covered by focused tests and the CLI demo prints a readable schedule. Next I would test invalid time strings, duplicate pet names, and multiple recurring completions across several days.
 
 ---
 

@@ -47,48 +47,54 @@ pip install -r requirements.txt
 Paste a sample of your app's CLI or Streamlit output here so a reader can see what a generated plan looks like:
 
 ```
-# e.g.:
-# Daily plan for Biscuit (Golden Retriever):
-#   08:00 — Morning walk (30 min) [priority: high]
-#   09:00 — Feeding (10 min) [priority: high]
-#   ...
+Today's Schedule for Jordan
+- 2026-07-05 07:30 - Morning walk (Luna, 25 min, priority high, pending)
+- 2026-07-05 08:30 - Breakfast feeding (Mochi, 10 min, priority high, pending)
+- 2026-07-05 08:30 - Medication (Luna, 5 min, priority high, pending)
+- 2026-07-05 18:00 - Evening play (Mochi, 20 min, priority medium, pending)
+
+Conflict Check
+- Conflict at 2026-07-05 08:30: Luna: Medication; Mochi: Breakfast feeding
+
+Recurring Task Demo
+- Created next occurrence: 2026-07-06 08:30 - Medication (Luna, 5 min, priority high, pending)
+- Tomorrow's schedule
+- 2026-07-06 08:30 - Medication (Luna, 5 min, priority high, pending)
 ```
 
 ## 🧪 Testing PawPal+
 
 ```bash
 # Run the full test suite:
-pytest
+python -m pytest
 
 # Run with coverage:
-pytest --cov
+python -m pytest --cov
 ```
 
 Sample test output:
 
 ```
-# Paste your pytest output here
+4 passed in 0.01s
 ```
 
 ## 📐 Smarter Scheduling
 
-> Fill in once you've implemented scheduling logic.
-
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `Scheduler.sort_by_time()` | Sorts by date, time, and priority. |
+| Filtering | `Scheduler.filter_tasks()` | Filters by pet, completion status, frequency, or date. |
+| Conflict handling | `Scheduler.detect_conflicts()` | Warns when tasks share the same date and time. |
+| Recurring tasks | `Task.mark_complete()`, `Pet.complete_task()` | Daily and weekly tasks create the next occurrence automatically. |
 
 ## 📸 Demo Walkthrough
 
 Describe your app in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Open the app and enter the owner name.
+2. Add at least one pet with the pet form.
+3. Add pet tasks with times, dates, and recurrence settings.
+4. Review the generated schedule and conflict warnings.
+5. Run the CLI demo with `python main.py` to see the backend logic in the terminal.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
