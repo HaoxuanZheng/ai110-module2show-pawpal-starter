@@ -16,8 +16,7 @@ Yes. I added `due_date`, `priority`, and recurrence handling to `Task` so the sc
 
 **a. Constraints and priorities**
 
-- What constraints does your scheduler consider (for example: time, priority, preferences)?
-- How did you decide which constraints mattered most?
+My scheduler considers due date, task time, priority, completion state, recurrence, and pet ownership. I treated date and time as the primary constraints because they drive the daily schedule, then used priority as a tie-breaker so urgent care tasks rise to the top when times collide.
 
 **b. Tradeoffs**
 
@@ -29,13 +28,15 @@ The scheduler only detects exact time matches, not overlapping durations. That i
 
 **a. How you used AI**
 
-- How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
-- What kinds of prompts or questions were most helpful?
+I used AI for UML brainstorming, class-skeleton generation, test drafting, and UI wiring ideas. The most useful prompts were specific ones that named the file and asked for one behavior at a time, such as sorting by time, recurring-task creation, or conflict detection.
 
 **b. Judgment and verification**
 
-- Describe one moment where you did not accept an AI suggestion as-is.
-- How did you evaluate or verify what the AI suggested?
+I did not accept a more elaborate scheduling strategy that tried to reason about overlapping durations and task lengths. I kept the simpler exact-time conflict check because it matched the project scope, was easier to explain in reflection, and was directly covered by tests and the CLI demo.
+
+Using separate chat sessions kept the phases from blending together. One session stayed focused on design and skeletons, another on core logic, another on testing, and that made it easier to compare suggestions without dragging earlier assumptions into later phases.
+
+Being the lead architect meant treating AI output as a draft, not a decision. I had to decide which features belonged in the model, keep the design simple enough to test, and verify every important behavior with the CLI and pytest instead of trusting the first suggestion blindly.
 
 ---
 
@@ -55,12 +56,12 @@ I am moderately confident because the main behaviors are covered by focused test
 
 **a. What went well**
 
-- What part of this project are you most satisfied with?
+I am most satisfied that the scheduler is now genuinely reusable: the same logic supports the CLI demo and the Streamlit UI, and the recurrence and conflict behaviors are visible in both places.
 
 **b. What you would improve**
 
-- If you had another iteration, what would you improve or redesign?
+If I had another iteration, I would add persistence so pets and tasks survive refreshes, and I would improve conflict detection to reason about duration overlap instead of exact timestamp collisions.
 
 **c. Key takeaway**
 
-- What is one important thing you learned about designing systems or working with AI on this project?
+I learned that AI is most useful when it helps generate options quickly, but the human designer still has to keep the data model coherent, the scope realistic, and the verification tight.

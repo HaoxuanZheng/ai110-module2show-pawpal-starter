@@ -74,11 +74,39 @@ st.divider()
 
 st.subheader("Today's Schedule")
 today = st.date_input("Schedule date", value=date.today(), key="schedule_date")
-todays_tasks = scheduler.tasks_for_day(today)
-st.code(scheduler.format_schedule(todays_tasks), language="text")
+todays_tasks = scheduler.tasks_for_day(today, include_completed=True)
+
+view_columns = st.columns(2)
+with view_columns[0]:
+    pet_filter_options = ["All pets"] + [pet.name for pet in owner.pets]
+    selected_pet_filter = st.selectbox("Filter by pet", pet_filter_options)
+with view_columns[1]:
+    status_filter = st.selectbox("Filter by status", ["All statuses", "pending", "done"])
+
+filtered_tasks = todays_tasks
+if selected_pet_filter != "All pets":
+    filtered_tasks = scheduler.filter_tasks(filtered_tasks, pet_name=selected_pet_filter)
+if status_filter != "All statuses":
+    filtered_tasks = scheduler.filter_tasks(filtered_tasks, completed=(status_filter == "done"))
+
+if filtered_tasks:
+    schedule_rows = [
+        {
+            "Time": task.time,
+            "Pet": task.pet_name or "Unassigned",
+            "Task": task.description,
+            "Priority": task.priority,
+            "Frequency": task.frequency,
+            "Status": "done" if task.completed else "pending",
+        }
+        for task in scheduler.sort_by_time(filtered_tasks)
+    ]
+    st.table(schedule_rows)
+else:
+    st.info("No tasks match the current filters for this date.")
 
 conflicts = scheduler.detect_conflicts(todays_tasks)
 if conflicts:
-    st.warning("\n".join(conflicts))
+    st.warning("Potential scheduling conflict detected:\n" + "\n".join(conflicts))
 else:
     st.success("No exact-time conflicts found for this date.")
