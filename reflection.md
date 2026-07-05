@@ -20,8 +20,9 @@ My scheduler considers due date, task time, priority, completion state, recurren
 
 **b. Tradeoffs**
 
+- Describe one tradeoff your scheduler makes.
+- Why is that tradeoff reasonable for this scenario?
 The scheduler only detects exact time matches, not overlapping durations. That is reasonable for a first version because the assignment focuses on simple daily routines, and exact collisions are easy to explain and verify in tests.
-
 ---
 
 ## 3. AI Collaboration
