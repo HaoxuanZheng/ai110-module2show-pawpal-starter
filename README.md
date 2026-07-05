@@ -99,31 +99,14 @@ Confidence level: ★★★★☆
 | Conflict handling | `Scheduler.detect_conflicts()` | Warns when tasks share the same date and time. |
 | Recurring tasks | `Task.mark_complete()`, `Pet.complete_task()` | Daily and weekly tasks create the next occurrence automatically. |
 
-## Demo Walkthrough
+## 📸 Demo Walkthrough
 
-1. Open the Streamlit app and enter the owner name.
-2. Add one or more pets with the pet form.
-3. Add tasks with a time, date, recurrence, duration, and priority.
-4. Use the schedule filters to narrow the table by pet or status.
-5. Review the sorted schedule table and any conflict warning banner.
-6. Run `python main.py` to see the same scheduling logic in the terminal.
+Describe your app in numbered steps so a reader can follow along without watching a video:
 
-Sample CLI output:
-
-```text
-Today's Schedule for Jordan
-- 2026-07-05 07:30 - Morning walk (Luna, 25 min, priority high, pending)
-- 2026-07-05 08:30 - Breakfast feeding (Mochi, 10 min, priority high, pending)
-- 2026-07-05 08:30 - Medication (Luna, 5 min, priority high, pending)
-- 2026-07-05 18:00 - Evening play (Mochi, 20 min, priority medium, pending)
-
-Conflict Check
-- Conflict at 2026-07-05 08:30: Luna: Medication; Mochi: Breakfast feeding
-
-Recurring Task Demo
-- Created next occurrence: 2026-07-06 08:30 - Medication (Luna, 5 min, priority high, pending)
-- Tomorrow's schedule
-- 2026-07-06 08:30 - Medication (Luna, 5 min, priority high, pending)
-```
+1. Open the app and enter the owner name.
+2. Add at least one pet with the pet form.
+3. Add pet tasks with times, dates, and recurrence settings.
+4. Review the generated schedule and conflict warnings.
+5. Run the CLI demo with `python main.py` to see the backend logic in the terminal.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
